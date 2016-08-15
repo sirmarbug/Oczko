@@ -5,6 +5,8 @@
  */
 package oczko;
 
+import java.util.Random;
+
 /**
  *
  * @author mariuszbugajski
@@ -33,5 +35,18 @@ public class Karta {
         }else{
             this.wartosc = this.nr;
         }
+    }
+    
+    int getTyp(){
+        return this.typ;
+    }
+    
+    int getNr(){
+        return this.nr;
+    }
+    
+    int getWartosc(){
+        return this.wartosc;
+    }
 
 }
