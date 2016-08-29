@@ -22,7 +22,7 @@ public class Karta {
     
     public Karta(int i){
         Random r = new Random();
-        this.typ = r.nextInt(4);
+        this.typ = r.nextInt(4)+1;
         this.nr = r.nextInt(12)+2;
         if(this.nr == 11){
             this.wartosc = 2;
