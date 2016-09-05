@@ -14,7 +14,7 @@ import java.util.Random;
 public class Gra extends javax.swing.JFrame {
 
     int pktG1, pktG2;
-    boolean koniec; // zmienna odpowiadająca za koniec gry, 0 - niezakończona, 1 - zakończona
+    boolean koniec; // zmienna odpowiadająca za koniec gry, 0 - niezakończona, 1 - zakończona, wykorzysywane przy warunkach logicznych
     
     Karta [] gracz1; //komputer
     Karta [] gracz2; //gracz
@@ -46,15 +46,11 @@ public class Gra extends javax.swing.JFrame {
         //karty gracza
         for(int i = 0; i < 2; i++){
             this.addCardG2();
-            /*this.gracz2[i] = new Karta(r.nextInt());
-            System.out.println(gracz2[i].wartosc);*/
         }
         
         // Karty komputera
         for(int i = 0; i < 2; i++){
             this.addCardG1();
-            /*this.gracz1[i] = new Karta(r.nextInt());
-            System.out.println(gracz1[i].wartosc);*/
         }
         
         this.si();
@@ -193,6 +189,41 @@ public class Gra extends javax.swing.JFrame {
                 break;
             }
         }
+    }
+    
+    void rozdanie(){
+        this.pktG1 = 0;
+        this.pktG2 = 0;
+        this.koniec = false;
+        
+        this.gracz1 = new Karta[7];
+        this.gracz2 = new Karta[7];
+        
+        // Inicjalizacja talii komputera
+        for (int i = 0; i < 7; i++){
+            this.gracz1[i] = new Karta();
+        }
+        
+        // Inicjalizacja talii gracza
+        for (int i = 0; i < 7; i++){
+            this.gracz2[i] = new Karta();
+        }
+        
+        //karty gracza
+        for(int i = 0; i < 2; i++){
+            this.addCardG2();
+        }
+        
+        // Karty komputera
+        for(int i = 0; i < 2; i++){
+            this.addCardG1();
+        }
+        
+        // dobranie kart przez komputer
+        this.si();
+        
+        // wyświetlenie nowego rozdania
+        this.printScreen();
     }
     
     void printScreen(){
@@ -339,7 +370,6 @@ public class Gra extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
@@ -400,36 +430,29 @@ public class Gra extends javax.swing.JFrame {
         jPanel2.add(jLabel14);
         jLabel14.setBounds(1190, 500, 180, 252);
 
-        jButton3.setText("Add PC");
+        jButton3.setText("Dobierz");
+        jButton3.setSize(new java.awt.Dimension(100, 30));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton3);
-        jButton3.setBounds(240, 630, 89, 29);
-
-        jButton4.setText("Add G");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton4);
-        jButton4.setBounds(420, 620, 82, 29);
+        jButton3.setBounds(240, 630, 93, 29);
         jPanel2.add(jLabel15);
         jLabel15.setBounds(520, 620, 90, 50);
         jPanel2.add(jLabel16);
         jLabel16.setBounds(640, 620, 90, 50);
 
         jButton5.setText("spr");
+        jButton5.setSize(new java.awt.Dimension(100, 30));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton5);
-        jButton5.setBounds(90, 620, 75, 29);
+        jButton5.setBounds(90, 630, 75, 29);
 
         jPanel3.setBackground(new java.awt.Color(51, 255, 0));
         jPanel3.setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -507,14 +530,9 @@ public class Gra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        this.addCardG1();
-        this.printScreen();
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         this.addCardG2();
         this.printScreen();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.koniec = true;
@@ -528,12 +546,14 @@ public class Gra extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         jPanel3.setVisible(false);
+        this.rozdanie();
         jPanel2.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         jPanel3.setVisible(false);
         jPanel4.setVisible(false);
+        this.rozdanie();
         jPanel2.setVisible(true);
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -541,6 +561,7 @@ public class Gra extends javax.swing.JFrame {
         jPanel3.setVisible(false);
         jPanel4.setVisible(false);
         jPanel5.setVisible(false);
+        this.rozdanie();
         jPanel2.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
@@ -583,7 +604,6 @@ public class Gra extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
