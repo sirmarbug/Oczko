@@ -53,6 +53,9 @@ public class Gra extends javax.swing.JFrame {
             this.addCardG1();
         }
         
+        this.sumaG1();
+        this.sumaG2();
+        
         this.printScreen();
     }
     
@@ -105,21 +108,19 @@ public class Gra extends javax.swing.JFrame {
     }
     
     // zlicza sume pkt na stole komputera
-    int sumaG1(){
+    void sumaG1(){
         this.pktG1 = 0;
         for (int i = 0; i < 7; i++){
             this.pktG1 = this.pktG1 + gracz1[i].wartosc;
         }
-        return this.pktG1;
     }
     
     // zlicza sume pkt na stole gracza
-    int sumaG2(){
+    void sumaG2(){
         this.pktG2 = 0;
         for (int i = 0; i < 7; i++){
             this.pktG2 = this.pktG2 + gracz2[i].wartosc;
         }
-        return this.pktG2;
     }
     
     // Sprawdzanie stanu gry
@@ -128,6 +129,9 @@ public class Gra extends javax.swing.JFrame {
         if(this.pktG1 > 21){
             jPanel2.setVisible(false);
             jButton6.setVisible(true);
+            jButton4.setVisible(true);
+            jLabel23.setVisible(true);
+            jLabel23.setText("PC: " + this.pktG1 + " || Ty: " + this.pktG2);
             jPanel3.setVisible(true);
         }
         
@@ -136,6 +140,9 @@ public class Gra extends javax.swing.JFrame {
             jPanel2.setVisible(false);
             jPanel3.setVisible(false);
             jButton7.setVisible(true);
+            jButton9.setVisible(true);
+            jLabel22.setVisible(true);
+            jLabel22.setText("PC: " + this.pktG1 + " || Ty: " + this.pktG2);
             jPanel4.setVisible(true);
         }
         
@@ -145,6 +152,9 @@ public class Gra extends javax.swing.JFrame {
             jPanel3.setVisible(false);
             jPanel4.setVisible(false);
             jButton8.setVisible(true);
+            jButton10.setVisible(true);
+            jLabel21.setVisible(true);
+            jLabel21.setText("PC: " + this.pktG1 + " || Ty: " + this.pktG2);
             jPanel5.setVisible(true);
         }
         
@@ -152,6 +162,9 @@ public class Gra extends javax.swing.JFrame {
         if(this.pktG2 > this.pktG1 && this.pktG2 < 22 && this.koniec == true){
             jPanel2.setVisible(false);
             jButton6.setVisible(true);
+            jButton4.setVisible(true);
+            jLabel23.setVisible(true);
+            jLabel23.setText("PC: " + this.pktG1 + " || Ty: " + this.pktG2);
             jPanel3.setVisible(true);
         }
         
@@ -161,6 +174,9 @@ public class Gra extends javax.swing.JFrame {
             jPanel3.setVisible(false);
             jPanel4.setVisible(false);
             jButton8.setVisible(true);
+            jButton10.setVisible(true);
+            jLabel21.setVisible(true);
+            jLabel21.setText("PC: " + this.pktG1 + " || Ty: " + this.pktG2);
             jPanel5.setVisible(true);
         }
     }
@@ -168,14 +184,15 @@ public class Gra extends javax.swing.JFrame {
     // Sztuczna inteligencja komputera
     void si(){
         for (int i = 0; i < 5; i++){
-            System.out.println(this.sumaG1());
             if (this.pktG1 < 16){
                 this.addCardG1();
+                this.sumaG1();
             }else if (this.pktG1 > 15 && this.pktG1 < 18){
                 Random r = new Random();
                 int dobierac = r.nextInt(2);
                 if (dobierac == 1){
                     this.addCardG1();
+                    this.sumaG1();
                 }else{
                     break;
                 }
@@ -214,6 +231,9 @@ public class Gra extends javax.swing.JFrame {
             this.addCardG1();
         }
         
+        this.sumaG1();
+        this.sumaG2();
+        
         // wyświetlenie nowego rozdania
         this.printScreen();
     }
@@ -224,6 +244,10 @@ public class Gra extends javax.swing.JFrame {
         jButton6.setVisible(false);
         jButton7.setVisible(false);
         jButton8.setVisible(false);
+        jButton4.setVisible(false);
+        jButton9.setVisible(false);
+        jButton10.setVisible(false);
+        jLabel21.setVisible(false);
         
         //Wyświetlanie kart komputera
         if(this.gracz1[0].typ == 0){
@@ -327,11 +351,11 @@ public class Gra extends javax.swing.JFrame {
         
         // Suma pkt komputera
         jLabel15.setVisible(true);
-        jLabel15.setText(this.sumaG1() + " K");
+        jLabel15.setText(this.pktG1 + " PKT");
         
         // Suma pkt gracza
         jLabel16.setVisible(true);
-        jLabel16.setText(this.sumaG2() + "");
+        jLabel16.setText(this.pktG2 + " PKT");
         
     }
 
@@ -347,6 +371,7 @@ public class Gra extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -370,15 +395,21 @@ public class Gra extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 3));
         jPanel1.setMinimumSize(new java.awt.Dimension(1366, 768));
         jPanel1.setLayout(null);
 
@@ -389,7 +420,7 @@ public class Gra extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(460, 140, 75, 29);
+        jButton1.setBounds(660, 250, 75, 29);
 
         jButton2.setText("Wyjdź");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -398,41 +429,47 @@ public class Gra extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(460, 210, 81, 29);
+        jButton2.setBounds(660, 320, 81, 29);
 
+        jLabel18.setFont(new java.awt.Font("Phosphate", 0, 48)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("OCZKO");
+        jPanel1.add(jLabel18);
+        jLabel18.setBounds(620, 110, 180, 70);
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 3));
         jPanel2.setMinimumSize(new java.awt.Dimension(1366, 768));
         jPanel2.setLayout(null);
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(70, 60, 180, 252);
+        jLabel1.setBounds(15, 40, 180, 252);
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(250, 0, 180, 252);
+        jLabel2.setBounds(205, 40, 180, 252);
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(480, 10, 180, 252);
+        jLabel3.setBounds(395, 40, 180, 252);
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(720, -10, 180, 252);
+        jLabel4.setBounds(585, 40, 180, 252);
         jPanel2.add(jLabel5);
-        jLabel5.setBounds(820, 0, 180, 252);
+        jLabel5.setBounds(775, 40, 180, 252);
         jPanel2.add(jLabel6);
-        jLabel6.setBounds(960, 0, 180, 252);
+        jLabel6.setBounds(965, 40, 180, 252);
         jPanel2.add(jLabel7);
-        jLabel7.setBounds(1120, 20, 180, 252);
+        jLabel7.setBounds(1155, 40, 180, 252);
         jPanel2.add(jLabel8);
-        jLabel8.setBounds(40, 380, 180, 252);
+        jLabel8.setBounds(15, 350, 180, 252);
         jPanel2.add(jLabel9);
-        jLabel9.setBounds(240, 350, 180, 252);
+        jLabel9.setBounds(205, 350, 180, 252);
         jPanel2.add(jLabel10);
-        jLabel10.setBounds(420, 340, 180, 252);
+        jLabel10.setBounds(395, 350, 180, 252);
         jPanel2.add(jLabel11);
-        jLabel11.setBounds(610, 400, 180, 252);
+        jLabel11.setBounds(585, 350, 180, 252);
         jPanel2.add(jLabel12);
-        jLabel12.setBounds(840, 500, 180, 252);
+        jLabel12.setBounds(775, 350, 180, 252);
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(980, 510, 180, 252);
+        jLabel13.setBounds(965, 350, 180, 252);
         jPanel2.add(jLabel14);
-        jLabel14.setBounds(1190, 500, 180, 252);
+        jLabel14.setBounds(1155, 350, 180, 252);
 
         jButton3.setText("Dobierz");
-        jButton3.setSize(new java.awt.Dimension(100, 30));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -440,13 +477,18 @@ public class Gra extends javax.swing.JFrame {
         });
         jPanel2.add(jButton3);
         jButton3.setBounds(240, 630, 93, 29);
+
+        jLabel15.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jLabel15);
-        jLabel15.setBounds(520, 620, 90, 50);
+        jLabel15.setBounds(630, 0, 120, 50);
+
+        jLabel16.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.add(jLabel16);
         jLabel16.setBounds(640, 620, 90, 50);
 
         jButton5.setText("Sprawdź");
-        jButton5.setSize(new java.awt.Dimension(100, 30));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
@@ -455,13 +497,15 @@ public class Gra extends javax.swing.JFrame {
         jPanel2.add(jButton5);
         jButton5.setBounds(90, 630, 96, 29);
 
-        jPanel3.setBackground(new java.awt.Color(51, 255, 0));
+        jPanel3.setBackground(new java.awt.Color(0, 153, 3));
         jPanel3.setMinimumSize(new java.awt.Dimension(1366, 768));
         jPanel3.setLayout(null);
 
+        jLabel17.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Wygrałeś");
         jPanel3.add(jLabel17);
-        jLabel17.setBounds(630, 210, 110, 16);
+        jLabel17.setBounds(580, 186, 170, 40);
 
         jButton6.setText("Graj");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -470,7 +514,7 @@ public class Gra extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton6);
-        jButton6.setBounds(610, 260, 75, 29);
+        jButton6.setBounds(630, 330, 80, 29);
 
         jButton4.setText("Wyjdź");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -479,7 +523,12 @@ public class Gra extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jButton4);
-        jButton4.setBounds(610, 310, 81, 29);
+        jButton4.setBounds(630, 390, 81, 29);
+
+        jLabel23.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel3.add(jLabel23);
+        jLabel23.setBounds(610, 260, 150, 40);
 
         jPanel4.setBackground(new java.awt.Color(255, 204, 0));
         jPanel4.setMinimumSize(new java.awt.Dimension(1366, 768));
@@ -492,7 +541,7 @@ public class Gra extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton7);
-        jButton7.setBounds(710, 240, 75, 29);
+        jButton7.setBounds(710, 330, 80, 29);
 
         jButton9.setText("Wyjdź");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -501,29 +550,53 @@ public class Gra extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton9);
-        jButton9.setBounds(700, 290, 81, 29);
+        jButton9.setBounds(710, 390, 81, 29);
+
+        jLabel19.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("REMIS");
+        jPanel4.add(jLabel19);
+        jLabel19.setBounds(700, 160, 130, 60);
+
+        jLabel22.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel4.add(jLabel22);
+        jLabel22.setBounds(693, 266, 150, 30);
 
         jPanel5.setBackground(new java.awt.Color(255, 0, 0));
         jPanel5.setMinimumSize(new java.awt.Dimension(1366, 768));
         jPanel5.setLayout(null);
 
         jButton8.setText("Graj");
+        jButton8.setBounds(new java.awt.Rectangle(600, 330, 80, 29));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
         jPanel5.add(jButton8);
-        jButton8.setBounds(600, 270, 75, 29);
+        jButton8.setBounds(600, 330, 80, 29);
 
         jButton10.setText("Wyjdź");
+        jButton10.setBounds(new java.awt.Rectangle(600, 390, 81, 29));
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
             }
         });
         jPanel5.add(jButton10);
-        jButton10.setBounds(580, 320, 81, 29);
+        jButton10.setBounds(600, 390, 81, 29);
+
+        jLabel20.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setText("PRZEGRAŁEŚ");
+        jPanel5.add(jLabel20);
+        jLabel20.setBounds(530, 180, 240, 60);
+
+        jLabel21.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel5.add(jLabel21);
+        jLabel21.setBounds(583, 250, 180, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -531,7 +604,7 @@ public class Gra extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1593, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1593, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1366, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1593, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,7 +618,7 @@ public class Gra extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -559,6 +632,7 @@ public class Gra extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         this.addCardG2();
+        this.sumaG2();
         this.printScreen();
         this.stanGry();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -666,7 +740,13 @@ public class Gra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
